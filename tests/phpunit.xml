@@ -7,8 +7,8 @@
          stopOnFailure="false"
          processIsolation="false"
          backupGlobals="false"
-         syntaxCheck="true"
->
+         syntaxCheck="true" >
+
     <testsuite name="ZfcUserLdap Test Suite">
         <directory>./ZfcUserLdapTest</directory>
     </testsuite>

@@ -7,6 +7,13 @@ use ZfcUser\Mapper\UserInterface;
 use ZfcUserLdap\Mapper\UserHydrator as HydratorInterface;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
+/**
+ * This is all irrelvant - we use our own User Mapper, this should ever be called.
+ * And why the hell would anyone write another set of methods ofr the user?
+ *
+ * @author barry
+ *
+ */
 
 class User extends AbstractUserMapper implements UserInterface, ServiceManagerAwareInterface
 {
@@ -47,6 +54,12 @@ class User extends AbstractUserMapper implements UserInterface, ServiceManagerAw
 
     public function findById($id)
     {
+    	/**
+    	 * This is poor form.
+    	 * I need to use the findbyID method of my Doctrine Entity
+    	 * Why is the email address as uid?
+    	 * @var Ambiguous $select
+    	 */
         $select = $this->getSelect()->where(array('user_id' => $id));
         $entity = $this->select($select)->current();
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
@@ -109,7 +122,7 @@ class User extends AbstractUserMapper implements UserInterface, ServiceManagerAw
 
     /*
      * Creates a new User Entity
-     * 
+     *
      * @return User Entity
      */
 
@@ -128,7 +141,7 @@ class User extends AbstractUserMapper implements UserInterface, ServiceManagerAw
 
     /**
      * Insert or Update DB entry depending if a User Object is set.
-     * 
+     *
      * @return User Entity
      */
     public function updateDb($ldapObject, $userObject)
